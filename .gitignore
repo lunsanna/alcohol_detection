@@ -1,0 +1,6 @@
+ALC/
+resampled_audio/
+spectrograms/
+
+# macos
+.DS_Store
