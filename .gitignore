@@ -3,6 +3,8 @@ resampled_audio/
 spectrograms/
 train_bottleneck/
 test_bottleneck/
+*__pycache__*
+*.ipynb_checkpoints*
 
 # macos
 .DS_Store
