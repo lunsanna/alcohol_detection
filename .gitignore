@@ -1,6 +1,8 @@
 ALC/
 resampled_audio/
 spectrograms/
+train_bottleneck/
+test_bottleneck/
 
 # macos
 .DS_Store
