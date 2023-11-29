@@ -53,10 +53,10 @@ class Speech(object):
         """Given label text, return number labels"""
         return self.text_to_label[text_label]
     
-    @staticmethod
-    def get_label_text(label:int) -> str:
+    @classmethod
+    def get_label_text(cls, label:int) -> str:
         "Given the label, return lable text"
-        return self.label_to_text[label]
+        return cls.label_to_text[label]
     
     def __iter__(self):
         for i, row in self.df.iterrows():
