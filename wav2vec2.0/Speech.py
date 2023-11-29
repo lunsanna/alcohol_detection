@@ -68,4 +68,7 @@ class Speech(object):
             # get label
             label = self._get_label(row[self.label_col_name])
             
-            yield {"speech": speech, "label": label}
+            yield {"index": i, 
+                   "path": path,
+                   "speech": speech, 
+                   "label": label}
