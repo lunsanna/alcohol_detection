@@ -1,7 +1,6 @@
 import pandas as pd
-import numpy as np
 import torch
-import pickle
+import pickle, time
 from transformers import Wav2Vec2Processor, Wav2Vec2Model
 from Speech import Speech
 
@@ -10,13 +9,17 @@ def extract_features(speech: Speech,
                      model: Wav2Vec2Model,
                      device:torch.device, 
                      layer_out_features_path:str, 
-                     layer_12_features_path:str):
+                     layer_12_features_path:str, 
+                     n_samples:int):
     
     speech_features_layer_out_mean = {}
     speech_features_layer_12_mean = {}
     
     speech_features_layer_out_max = {}
     speech_features_layer_12_max = {}
+    
+    i = 0
+    start = time.time()
     
     for s in speech:
         # preprocess
@@ -38,15 +41,19 @@ def extract_features(speech: Speech,
         speech_features_layer_out_max[s["index"]] = hidden_layer_out.max(axis=0) # (1024,)
         speech_features_layer_12_max[s["index"]] = hidden_layer_12.max(axis=0) # (1024,)
         
+        if i % 500 == 0:
+            s = time.time()-start
+            print(f"{i}/{n_samples} done. Time elapsed: {int(s//3600)}:{int((s//60)%60):02d}:{int(s%60):02d}")
+        i += 1
     # save mean 
-    with open(layer_out_features_path + "_mean", "wb") as file:
+    with open(layer_out_features_path + "_mean.pkl", "wb") as file:
         pickle.dump(speech_features_layer_out_mean, file)
-    with open(layer_12_features_path + "_mean", "wb") as file:
+    with open(layer_12_features_path + "_mean.pkl", "wb") as file:
         pickle.dump(speech_features_layer_12_mean, file)
     # save max
-    with open(layer_out_features_path + "_max", "wb") as file:
+    with open(layer_out_features_path + "_max.pkl", "wb") as file:
         pickle.dump(speech_features_layer_out_max, file)
-    with open(layer_12_features_path + "_max", "wb") as file:
+    with open(layer_12_features_path + "_max.pkl", "wb") as file:
         pickle.dump(speech_features_layer_12_max, file)
 
 if __name__=="__main__":
@@ -57,11 +64,11 @@ if __name__=="__main__":
     df_train_path = "../train.csv"
     df_test_path = "../test.csv"
     
-    layer_out_features_path = "speech_features_layer_out_mean.pkl"
-    layer_12_features_path = "speech_features_layer_12_mean.pkl"
+    layer_out_features_path = "speech_features_layer_out_mean"
+    layer_12_features_path = "speech_features_layer_12_mean"
     
-    layer_out_features_path_test = "test_speech_features_layer_out.pkl"
-    layer_12_features_path_test = "test_speech_featurs_layer_12.pkl"
+    layer_out_features_path_test = "test_speech_features_layer_out"
+    layer_12_features_path_test = "test_speech_featurs_layer_12"
     
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"RUNNING ON {device}")
@@ -92,7 +99,9 @@ if __name__=="__main__":
     model = Wav2Vec2Model.from_pretrained(pre_trained_path)
     
     # Extract hidden features for training set 
-    extract_features(speech, processor, model, device, layer_out_features_path, layer_12_features_path)
+    extract_features(speech, processor, model, device, layer_out_features_path, 
+                     layer_12_features_path, len(df))
     
     # Extract hidden features for test set
-    extract_features(speech_test, processor, model,device, layer_out_features_path_test, layer_12_features_path_test)
+    extract_features(speech_test, processor, model,device, layer_out_features_path_test, 
+                     layer_12_features_path_test, len(df_test))

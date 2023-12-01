@@ -5,6 +5,9 @@ train_bottleneck/
 test_bottleneck/
 *__pycache__*
 *.ipynb_checkpoints*
+*.pkl
+*.out
+test*
 
 # macos
 .DS_Store

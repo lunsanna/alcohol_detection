@@ -49,14 +49,13 @@ class Speech(object):
         
         return speech
     
-    def _get_label(self, text_label:str) -> int:
+    def get_label(self, text_label:str) -> int:
         """Given label text, return number labels"""
         return self.text_to_label[text_label]
     
-    @classmethod
-    def get_label_text(cls, label:int) -> str:
+    def get_label_text(self, label:int) -> str:
         "Given the label, return lable text"
-        return cls.label_to_text[label]
+        return self.label_to_text[label]
     
     def __iter__(self):
         for i, row in self.df.iterrows():
@@ -66,7 +65,7 @@ class Speech(object):
             speech = self._get_speech(path)
             
             # get label
-            label = self._get_label(row[self.label_col_name])
+            label = self.get_label(row[self.label_col_name])
             
             yield {"index": i, 
                    "path": path,
