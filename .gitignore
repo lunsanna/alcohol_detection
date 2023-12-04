@@ -3,11 +3,15 @@ resampled_audio/
 spectrograms/
 train_bottleneck/
 test_bottleneck/
+mfccs/
+.idea/
+
 *__pycache__*
 *.ipynb_checkpoints*
 *.pkl
 *.out
 test*
+!test_clipped_mfcc.csv
 
 # macos
 .DS_Store
