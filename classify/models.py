@@ -6,6 +6,7 @@ from sklearn.neural_network import MLPClassifier
 from .compute_metrics import compute_metrics
 import time 
 
+
 def classifier(X, y, X_test, y_test) -> SVC:
     """Train SVM classifier with X and y, evalute with X_test and y_test
 

@@ -23,7 +23,7 @@ fft_len = 512
 hop_len = 256
 num_mels = 64
 num_mfccs = 13
-
+target_length = 10.0
 calculateMFCCs = True
 
 preproc = mfcc_preproc.MFCC_preprocessor(
@@ -31,7 +31,8 @@ preproc = mfcc_preproc.MFCC_preprocessor(
     num_mels=num_mels,
     n_mfcc=num_mfccs,
     n_fft=fft_len,
-    hop_length=hop_len)
+    hop_length=hop_len,
+    target_length=target_length)
 
 # Sanity Check
 mfcc = preproc.processMFCC("my_speech.wav")

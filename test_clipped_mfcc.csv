@@ -1,4 +1,4 @@
-git adutterance,utt,spn,o_utt,item,o_item,alc,sex,age,acc,drh,aak,bak,ges,ces,wea,irreg,anncom,specom,type,content,file_path,duration,alc_mapped,resampled_path,spectrogram_filepath,mfcc_filepath
+utterance,utt,spn,o_utt,item,o_item,alc,sex,age,acc,drh,aak,bak,ges,ces,wea,irreg,anncom,specom,type,content,file_path,duration,alc_mapped,resampled_path,spectrogram_filepath,mfcc_filepath
 0401041004_h_00,401041004,40,,4,,a,F,27,BY,light,0.00094,0.00086,f5,r1,RAIN,0|0|0|0|0|0|0|0|0,,,R,A,ALC/ses1041/0401041004_h_00.wav,6.25,Intoxicated,resampled_audio/0401041004_h_00.wav,spectrograms/0401041004_h_00.npy,mfccs/0401041004_h_00.npy
 0401041020_h_00,401041020,40,402034020.0,20,20.0,a,F,27,BY,light,0.00094,0.00086,f5,r1,RAIN,1|0|1|0|0|1|0|0|0,,,R,T,ALC/ses1041/0401041020_h_00.wav,7.25,Intoxicated,resampled_audio/0401041020_h_00.wav,spectrograms/0401041020_h_00.npy,mfccs/0401041020_h_00.npy
 0401041012_h_00,401041012,40,402034012.0,12,12.0,a,F,27,BY,light,0.00094,0.00086,f5,r1,RAIN,0|0|2|0|0|0|0|0|0,,,L,T,ALC/ses1041/0401041012_h_00.wav,11.51,Intoxicated,resampled_audio/0401041012_h_00.wav,spectrograms/0401041012_h_00.npy,mfccs/0401041012_h_00.npy
